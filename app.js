@@ -1,25 +1,30 @@
 'use strict';
 
-const flights = ['Russia', 'USA', 'London', 'London', 'USA'];
+const wetherMap = new Map();
+wetherMap
+    .set('London', '10')
+    .set('Moscow', '7');
 
-const setFlights = new Set(flights);
+console.log(wetherMap.get('London')); //10
+console.log(wetherMap.get('not found')); //undefined
 
-console.log(setFlights);
-console.log(setFlights.size);
-console.log(setFlights.has('Russia'));
-setFlights.add('Paris');
-console.log(setFlights);
-setFlights.delete('USA');
-console.log(setFlights);
+console.log(wetherMap.has('Moscow')); //true
+console.log(wetherMap.has('not found')); //false
 
-for (const flight of setFlights) {
-    console.log(flight);
-}
+console.log(wetherMap.delete('London')); //true
 
-console.log([...setFlights]);
+const arr = [1, 2, 3];
+const obj = {a:1};
+wetherMap
+    .set(1, 5)
+    .set(1, 6)
+    .set(true, 'yes')
+    .set(false, 'no')
+    .set(arr, 'array')
+    .set(obj, {b:2});
 
-const setObj = new Set([{a: 1}, {b: 2}, {c: 3}]);
-console.log(setObj);
+console.log(wetherMap);
+console.log(wetherMap.size);
 
-console.log(new Set('Hello'));
-console.log(new Set(false));
+console.log(wetherMap.get(arr));
+console.log(wetherMap.get(obj));
