@@ -2,18 +2,16 @@
 
 const wetherMap = new Map([
     ['Moscow', 10], 
-    ['London', 8]
+    ['London', 8],
+    ['Paris', 14]
 ]);
 
 
-console.log(wetherMap);
+for (const [key, value] of wetherMap) {
+    console.log(key);
+    console.log(value);
+}
 
-const wetherObject = {
-    london: 10,
-    moscow: 7,
-    paris: 14
-};
-
-console.log(Object.entries(wetherObject));
-const wetherMap2 = new Map(Object.entries(wetherObject));
-console.log(wetherMap2);
+console.log([...wetherMap]);
+console.log([...wetherMap.keys()]);
+console.log([...wetherMap.values()]);
