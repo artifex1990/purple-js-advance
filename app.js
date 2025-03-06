@@ -1,26 +1,31 @@
 'use strict';
 
-const max = 2 ** 53 - 1;
-console.log(Number.MAX_SAFE_INTEGER);
-console.log(Number.MIN_SAFE_INTEGER);
-console.log(max);
-console.log(max + 1);
-console.log(max + 2);
-console.log(max + 3);
+const options = {
+    style: 'currency',
+    currency: 'RUB',
+    useGrouping: false
+}
 
+const options2 = {
+    style: 'currency',
+    currency: 'USD'
+}
 
-console.log(243242342343243243241421415n);
-console.log(BigInt(243242342343243243241421415));
-console.log(BigInt('243242342343243243241421415'));
+const options3 = {
+    style: 'decimal'
+}
 
-console.log(10n + 10n);
-//console.log(10n + 100);
-console.log(10n + BigInt(10));
-console.log(10n / BigInt(3));
-console.log(10n * 10n);
+const options4 = {
+    style: 'percent'
+}
 
-console.log(243242342343243243241421415n * 243242342343243243241421415n);
+const options5 = {
+    style: 'unit',
+    unit: 'celsius'
+}
 
-console.log(10n < 20);
-console.log(10n == 10);
-console.log(10n === 10);
+console.log(new Intl.NumberFormat('ru-RU',options).format(23_000));
+console.log(new Intl.NumberFormat('en-US',options2).format(23_000));
+console.log(new Intl.NumberFormat('ru-RU',options3).format(23_000));
+console.log(new Intl.NumberFormat('ru-RU',options4).format(0.1));
+console.log(new Intl.NumberFormat('ru-RU',options5).format(5));
