@@ -1,14 +1,8 @@
 'use strict';
 
-console.log('1');
+const mark1 = performance.now();
 
-const messages = ['2-1', '2-2'];
-
-const timer = setTimeout((a, b) => {
-    console.log(a);
-    console.log(b);
-}, 1000, ...messages);
-
-//clearTimeout(timer);
-
-console.log('3');
+setTimeout(() => {
+    const mark2= performance.now();
+    console.log(mark2 - mark1);
+}, 1000);
