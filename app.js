@@ -1,14 +1,15 @@
 'use strict';
 
-const first = new Date(2024, 10, 4);
-const second = new Date(2024, 10, 4);
+const user = {
+    name: 'Max',
+    birthday: '03/07/2000',
+}
 
-console.log(first.getTime() < second.getTime());
-console.log(first == second);
-console.log(first === second);
+function isBirthday(user) {
+    const userDate = new Date(user.birthday);
+    const today = new Date();
 
+    return userDate.getMonth() === today.getMonth() && userDate.getDate() === today.getDate();
+}
 
-console.log(first.getTime() == second.getTime());
-console.log(first.getTime() === second.getTime());
-console.log(Number(first) === Number(second));
-console.log(+first === +second);
+console.log(isBirthday(user));
