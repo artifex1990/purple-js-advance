@@ -1,15 +1,16 @@
 'use strict';
 
-function cubeRandom(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+console.log(15 / 2);
+console.log(15 % 2);
+
+const isEven = n => n % 2 === 0;
+const isOdd = n => n % 2 !== 0;
+
+function isEvenFunc(n) {
+    return n % 2 === 0;
 }
 
-const set = new Set();
-for (let i = 0; i < 1000; i++) {
-    set.add(cubeRandom(1, 20));
-    if (set.size === 20) {
-        console.log(i);
-        break;
-    }
-}
-console.log(set);
+console.log(isEven(17));
+console.log(isEven(12));
+console.log(isOdd(12));
+console.log(isOdd(17));
