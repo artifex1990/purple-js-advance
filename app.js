@@ -1,12 +1,23 @@
 'use strict';
 
-const interval = setInterval(() => {
-    console.log(new Date());
-}, 1000);
+function timerOfPizza(time) {
+    const localTimeStep = 1000;
+    let minutes = Math.floor(time / localTimeStep / 60);
+    let second = time / localTimeStep % 60;
+    const interval = setInterval(() => {
+        console.log(`${String(minutes).padStart(2, 0)}:${String(second).padStart(2, 0)}`);
+        if (second === 0) {
+            minutes--;
+            second = 60;
+        } else {
+            second--;
+        }
+    }, localTimeStep);
 
-const timer = setTimeout(() => {
-    clearInterval(interval);
-}, 5000);
+    setTimeout(() => {
+        clearInterval(interval);
+        console.log('🍕!!!');
+    }, time);
+}
 
-console.log(interval);
-console.log(timer);
+timerOfPizza(61000);
