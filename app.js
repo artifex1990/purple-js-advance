@@ -1,39 +1,32 @@
 'use strict';
 
+const now = new Date();
+console.log(now);
+
+console.log(new Date('01-01-2023'));
+console.log(new Date('02/01/2023'));
+console.log(new Date('2023/01/02'));
+console.log(new Date('10 Jan 2023'));
+console.log(new Date('10 янв 2023'));
 
 
-function convert(sum, initialCurrency, convertCurrency) {
-    const allCurrencies = [
-        {
-            name: "USD",
-            mult: 1
-        },
-        {
-            name: "RUB",
-            mult: 1 / 60
-        },
-        {
-            name: "EUR",
-            mult: 1.1
-        }
-    ];
-    
-    const initial = allCurrencies.find(c => c.name === initialCurrency);
-    if (!initial) {
-        return null;
-    }
 
-    const convert = allCurrencies.find(c => c.name === convertCurrency);
-    if (!convert) {
-        return null;
-    }
+console.log(new Date(2024, 11, 31, 10, 5, 10));
+console.log(new Date(2024, 11, 31 + 100));
 
-    return new Intl
-        .NumberFormat('ru-RU', {style: 'currency', currency: convert.name})
-        .format(sum * initial.mult / convert.mult);
-}
+console.log(new Date(0));
+console.log(new Date(2 * 24 * 60 * 60 * 1000));
+console.log(Date.now());
+console.log(new Date(Date.now()));
 
-console.log(convert(100, 'EUR', 'RUB'));
-console.log(convert(100, 'RUB', 'DFG'));
-console.log(convert(100, 'USD', 'EUR'));
-console.log(convert(100, 'RUB', 'USD'));
+console.log(now.getFullYear());
+console.log(now.getMonth());
+console.log(now.getDay());
+console.log(now.getDate());
+console.log(now.getHours());
+console.log(now.getMinutes());
+console.log(now.getSeconds());
+console.log(now.getTime());
+
+console.log(new Date(now.setFullYear(2030)));
+console.log(new Date(now.setMonth(11)));
