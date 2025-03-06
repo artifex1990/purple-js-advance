@@ -1,13 +1,23 @@
 'use strict';
 
-const User = function(email, password) {
-    this.email = email;
-    this.password = password;
+const Book = function(title, author) {
+    this.title = title;
+    this.author = author;
+    this.isRead = false;
 }
 
-const user1 = new User('a@a.ru', '123456');
-console.log(user1);
-const user2 = new User('a2@a.ru', '12345');
-console.log(user2);
+Book.prototype.read = function() {
+    this.isRead = true;
+}
 
-console.log(user2 instanceof User);
+Book.prototype.cover = 'Paper';
+
+const lordOfTheRing = new Book('Lord of the Rings', 'J. R. R. Tolkien');
+lordOfTheRing.read();
+console.log(lordOfTheRing);
+console.log(lordOfTheRing.cover);
+console.log(lordOfTheRing.hasOwnProperty('author'));
+console.log(lordOfTheRing.__proto__);
+console.log(lordOfTheRing.__proto__ === Book.prototype);
+console.log(Book.prototype.isPrototypeOf(lordOfTheRing));
+console.log(Book.prototype.isPrototypeOf(Book));
