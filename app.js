@@ -1,21 +1,15 @@
 'use strict';
 
-console.log(Math.round(Math.random() * 100));
-console.log(Math.round(1.4));
-console.log(Math.round(1.499999));
-console.log(Math.round(1.6));
+function cubeRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
-console.log(Math.ceil(1.1));
-console.log(Math.ceil(1));
-console.log(Math.ceil(0.1));
-
-console.log(Math.floor(1.9));
-console.log(Math.floor(1));
-console.log(Math.floor(0.1));
-
-console.log(Math.trunc(1.9));
-console.log(Math.trunc(1));
-console.log(Math.trunc(0.1));
-
-
-console.log(Number(1.499999.toFixed(1)));
+const set = new Set();
+for (let i = 0; i < 1000; i++) {
+    set.add(cubeRandom(1, 20));
+    if (set.size === 20) {
+        console.log(i);
+        break;
+    }
+}
+console.log(set);
