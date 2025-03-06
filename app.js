@@ -1,15 +1,11 @@
 'use strict';
 
-const user = {
-    name: 'Max',
-    birthday: '03/07/2000',
-}
+const date = new Date();
 
-function isBirthday(user) {
-    const userDate = new Date(user.birthday);
-    const today = new Date();
+console.log(date);
+console.log(new Intl.DateTimeFormat(navigator.language).format(date));
+console.log(new Intl.DateTimeFormat('ru-RU', {hour: 'numeric', minute: 'numeric'}).format(date));
+console.log(new Intl.DateTimeFormat('en-US', {hour: 'numeric', minute: 'numeric', month: 'long'}).format(date));
+console.log(new Intl.DateTimeFormat('ru-RU', {hour: 'numeric', minute: 'numeric', month: 'long', weekday: 'short', year: '2-digit'}).format(date));
 
-    return userDate.getMonth() === today.getMonth() && userDate.getDate() === today.getDate();
-}
-
-console.log(isBirthday(user));
+console.log(navigator.language);
