@@ -1,16 +1,5 @@
 'use strict';
 
-console.log(15 / 2);
-console.log(15 % 2);
-
-const isEven = n => n % 2 === 0;
-const isOdd = n => n % 2 !== 0;
-
-function isEvenFunc(n) {
-    return n % 2 === 0;
-}
-
-console.log(isEven(17));
-console.log(isEven(12));
-console.log(isOdd(12));
-console.log(isOdd(17));
+const bigNum = 350_000_000;
+console.log(bigNum);
+console.log(Number('350_000_000')); //NaN
