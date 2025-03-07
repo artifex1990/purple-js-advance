@@ -2,35 +2,39 @@
 
 class User {
     #login;
-    #password;
+    #_password;
     
     constructor(login, password) {
-        this.login = login;
-        this.password = password;
-    }
-
-    set login(login) {
         this.#login = login;
+        this.#password = password;
     }
 
     get login() {
         return this.#login;
     }
 
-    set password(password) {
-        this.#password = password.split('').reverse().join('');
+    set #password(password) {
+        this.#_password = password.split('').reverse().join('');
     }
 
-    #checkPassword(password) {
-        return this.#password.split('').reverse().join('') === password;
+    get #password() {
+        return this.#_password.split('').reverse().join('');
+    }
+
+    checkPassword(password) {
+        return this.#password === password;
     }
 
     changePassword(oldPassword, newPassword) {
-        if (this.#checkPassword(oldPassword)) {
-            this.password = newPassword;
+        if (!this.checkPassword(oldPassword)) {
+            return false;
         }
+
+        this.#password = newPassword;
+        return true;
     }
 }
 
 const user = new User('John', '12345');
-console.log(user.login);
+user.changePassword('12345', '54321');
+console.log(user);
