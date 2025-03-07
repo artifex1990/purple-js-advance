@@ -1,48 +1,53 @@
 'use strict';
 
 class Enemy {
-    #health;
+    health;
 
     constructor(health = 100) {
-        this.#health = health;
-    }
-
-    get health() {
-        return this.#health;
+        this.health = health;
     }
 
     receiveDamage(damage) {
-        if (this.health < damage) {
-            return;
-        }
-        this.#health -= damage;
+        this.health -= damage;
+        console.log(this.health);
     }
 }
-class Orc extends Enemy {
-    #damageCounter = 0;
 
-    constructor(health) {
-        super(health);
-    }
-
-    receiveDamage(damage) {
-        this.#damageCounter++;
-        if (this.#damageCounter % 2 === 0) {
-            return;
-        }
-        super.receiveDamage(damage);
-    }
-}
 class Sword {
-    #damage = 10;
+    #damage;
+    constructor(damage = 10) {
+        this.#damage = damage;
+    }
 
     strike(enemy) {
         enemy.receiveDamage(this.#damage);
     }
 }
 
-const orc = new Orc();
-const sword = new Sword();
+class Orc extends Enemy {
+    constructor(health) {
+        super(health);
+    }
+
+    receiveDamage(damage) {
+        if (Math.random() >  0.5) {
+             this.health -= damage;
+        }
+       
+        console.log(this.health);
+    }  
+}
+
+const orc = new Orc(10);
+const sword = new Sword(3);
+sword.strike(orc);
+sword.strike(orc);
+sword.strike(orc);
+sword.strike(orc);
+sword.strike(orc);
+sword.strike(orc);
+sword.strike(orc);
+sword.strike(orc);
 sword.strike(orc);
 sword.strike(orc);
 sword.strike(orc);
