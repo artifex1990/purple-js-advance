@@ -1,5 +1,15 @@
 'use strict';
 
+//ad-hock полиморфизм
+'2' + 2;
+
+//Параметрический полиморфизм
+console.log(10 + 2);
+console.log('10');
+console.log({a: 1});
+
+
+//Полиморфизм подтипов
 class Enemy {
     health;
 
@@ -38,22 +48,17 @@ class Orc extends Enemy {
     }  
 }
 
-const orc = new Orc(10);
+class Troll extends Enemy {
+}
+
+const enemy = new Orc(10);
+const enemy2 = new Troll(20);
 const sword = new Sword(3);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-sword.strike(orc);
-console.log(orc.health);
+sword.strike(enemy);
+sword.strike(enemy);
+sword.strike(enemy);
+sword.strike(enemy);
+sword.strike(enemy2);
+sword.strike(enemy2);
+sword.strike(enemy2);
+sword.strike(enemy2);
