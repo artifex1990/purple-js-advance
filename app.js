@@ -1,40 +1,22 @@
 'use strict';
 
-class User {
-    #login;
-    #_password;
-    
-    constructor(login, password) {
-        this.#login = login;
-        this.#password = password;
+const User = {
+    init(email, password) {
+        this.email = email;
+        this.password = password;
+    },
+
+    log() {
+        console.log('Hello world!');
     }
+};
 
-    get login() {
-        return this.#login;
-    }
+const user = Object.create(User);
 
-    set #password(password) {
-        this.#_password = password.split('').reverse().join('');
-    }
-
-    get #password() {
-        return this.#_password.split('').reverse().join('');
-    }
-
-    checkPassword(password) {
-        return this.#password === password;
-    }
-
-    changePassword(oldPassword, newPassword) {
-        if (!this.checkPassword(oldPassword)) {
-            return false;
-        }
-
-        this.#password = newPassword;
-        return true;
-    }
-}
-
-const user = new User('John', '12345');
-user.changePassword('12345', '54321');
+user.log();
+user.init('test@test.com', '123');
+console.log(user.__proto__ === User);
 console.log(user);
+
+const admin = Object.create(user);
+console.log(admin);
