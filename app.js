@@ -1,43 +1,24 @@
 'use strict';
 
-class Wallet {
-    balance = 0;
+class Character {
+    #inventory = [];
+    #health = 100;
 
-    add(sun) {
-        this.balance += sun;
-        return this;
+    pickItem(item) {
+        this.#inventory.push(item);
     }
     
-    remove(sun) {
-        this.balance -= sun;
-        return this;
+    recieveDamage(damage) {
+        this.#health -= damage;
     }
 }
 
-const wallet = new Wallet();
-const res = wallet
-    .add(100)
-    .remove(10)
-    .add(20);
-console.log(res);
-
-class Builder {
-    house = {};
-
-    addRoof() {
-        this.house.roof = 'Roof';
-        return this;
+class DB {
+    save(item) {
+        localStorage.setItem('item', item);
     }
 
-    addFloor() {
-        this.house.floor = 'Floor';
-        return this;
-    }
+    load() {
 
-    execute() {
-        return this.house;
     }
 }
-
-const res2 = new Builder().addRoof().addFloor().execute();
-console.log(res2);
