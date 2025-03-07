@@ -1,25 +1,36 @@
 'use strict';
 
-class Car {
-    #vin = 6;
-    speed;
-
-    constructor() {
-        // delete this.#vin;
-        // this.#test2 - 4;
-        this.test3 = 4;
+class User {
+    #login;
+    #password;
+    
+    constructor(login, password) {
+        this.login = login;
+        this.password = password;
     }
 
-    #changeVin() {
-        console.log('Вин изменен!');
+    set login(login) {
+        this.#login = login;
     }
 
-    test() {
-        this.#changeVin();
+    get login() {
+        return this.#login;
     }
 
-    static #field = 3;
+    set password(password) {
+        this.#password = password.split('').reverse().join('');
+    }
+
+    #checkPassword(password) {
+        return this.#password.split('').reverse().join('') === password;
+    }
+
+    changePassword(oldPassword, newPassword) {
+        if (this.#checkPassword(oldPassword)) {
+            this.password = newPassword;
+        }
+    }
 }
 
-const car = new Car();
-car.test();
+const user = new User('John', '12345');
+console.log(user.login);
