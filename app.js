@@ -7,9 +7,9 @@ function req(id) {
     request.send();
 
     request.addEventListener('load', function () {
-        const data = JSON.parse(this.responseText);
-        console.log(data);
-        console.log(productsAvgPrice(data.products).toFixed(2))
+        const {products} = JSON.parse(this.responseText);
+        console.log(products);
+        console.log(productsAvgPrice(products).toFixed(2))
     });
 }
 
