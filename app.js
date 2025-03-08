@@ -1,22 +1,28 @@
 'use strict';
 
+const request = new XMLHttpRequest();
+request.open('GET', 'https://dummyjson.com/products/');
+request.send();
 
-function req(id) {
+request.addEventListener('load', function () {
+    const {products} = JSON.parse(this.responseText);
+    console.log(products);
+
     const request = new XMLHttpRequest();
-    request.open('GET', 'https://dummyjson.com/products/'+id);
+    request.open('GET', 'https://dummyjson.com/products/'+products[0].id);
     request.send();
 
     request.addEventListener('load', function () {
-        const {products} = JSON.parse(this.responseText);
-        console.log(products);
-        console.log(productsAvgPrice(products).toFixed(2))
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+
+        const request = new XMLHttpRequest();
+        request.open('GET', 'https://dummyjson.com/products/'+products[1].id);
+        request.send();
+
+        request.addEventListener('load', function () {
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+        });
     });
-}
-
-function productsAvgPrice(products) {
-    return products.reduce((sum, product) => sum + product.price, 0) / products.length;
-}
-
-req('');
-
-console.log('end');
+});
