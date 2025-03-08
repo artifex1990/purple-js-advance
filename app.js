@@ -1,6 +1,30 @@
 'use strict';
 
-fetch('https://dummyjson.com/productss/')
+function setSelect(arr) {
+    const filters = document.querySelector('.filter');
+    filters.innerHTML = `<select>
+        ${arr.map(el => `<option value="${el.name}">${el.name}</option>`)}
+    </select>`;
+}
+
+function getData(URL, errorMessage) {
+    return fetch(URL)
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error(errorMessage);
+            }
+            return resp.json();
+        })
+        .then(data => setSelect(data))
+        .catch(error => {
+            const el = document.querySelector('.filter');
+            el.innerHTML = error.message;
+        });
+}
+
+getData('https://dummyjson.com/products/categordies', 'Ошибка при загрузке данных');
+
+/* fetch('https://dummyjson.com/products/')
     .then(
         response => {
             if (!response.ok) {
@@ -25,4 +49,4 @@ fetch('https://dummyjson.com/productss/')
     .catch(error => {
         const el = document.querySelector('.filter');
         el.innerHTML = error.message;
-    });
+    }); */
