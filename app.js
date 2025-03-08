@@ -9,11 +9,14 @@ function req(id) {
     request.addEventListener('load', function () {
         const data = JSON.parse(this.responseText);
         console.log(data);
+        console.log(productsAvgPrice(data.products).toFixed(2))
     });
 }
 
-req(1);
+function productsAvgPrice(products) {
+    return products.reduce((sum, product) => sum + product.price, 0) / products.length;
+}
+
 req('');
-req(3);
 
 console.log('end');
