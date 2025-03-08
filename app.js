@@ -1,24 +1,18 @@
 'use strict';
 
-function getData(URL, errorMessage, method = 'GET') {
-    return fetch(URL, {
-        method
-    })
-    .then(resp => {
-        if (!resp.ok) {
-            throw new Error(`${errorMessage}: ${resp.status}`);
-        }
-        return resp.json();
-    });
-}
+console.log(1);
 
-getData('https://dummyjson.com/products', 'Ошибка при загрузке данных продуктов')
-    .then(({ products }) => {
-        console.log(products)
-        return getData('https://dummyjson.com/products/' + products[0].id, 'Ошибка при получении данных о продукте');
-    })
-    .then(product => console.log(product))
-    .catch(errorMessage => {
-        const el = document.querySelector('.filter');
-        el.innerHTML = errorMessage.message;
-    });
+setTimeout(() => console.log(2), 0);
+
+Promise.resolve(3).then((n) => {
+    console.log(n);
+    for (let i = 0; i < 5000000000; i++) {
+
+    }
+});
+
+console.log(4);
+
+for (let i = 0; i < 5000000000; i++) {
+
+}
