@@ -1,18 +1,24 @@
 'use strict';
 
-console.log(1);
-
-setTimeout(() => console.log(2), 0);
-
-Promise.resolve(3).then((n) => {
-    console.log(n);
-    for (let i = 0; i < 5000000000; i++) {
-
+const prom = new Promise((resolve, reject) => {
+    if (new Date() > new Date('2019-05-29')) {
+        reject(new Error('Way way'));
     }
+    resolve('Success');
 });
 
-console.log(4);
+prom
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
 
-for (let i = 0; i < 5000000000; i++) {
-
+function timeout(sec) {
+    sec *= 1000;
+    return new Promise((resolve) => setTimeout(resolve, sec));
 }
+
+timeout(1)
+    .then(() => {
+        console.log('Time is over 1');
+        return timeout(2);
+    })
+    .then(() => console.log('Time is over 2'));
