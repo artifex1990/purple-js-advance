@@ -1,31 +1,19 @@
 'use strict';
 
-class DB {
-    save(item) {
-        console.log(`Сохраняю в БД: ${item}`);
-    }
+
+function req(id) {
+    const request = new XMLHttpRequest();
+    request.open('GET', 'https://dummyjson.com/products/'+id);
+    request.send();
+
+    request.addEventListener('load', function () {
+        const data = JSON.parse(this.responseText);
+        console.log(data);
+    });
 }
 
-class MongoDB extends DB {
-    save(item) {
-        console.log(`Сохраняю в MongoDB: ${item}`);
-    }
-}
+req(1);
+req('');
+req(3);
 
-class ToDoList {
-    items = [1,2,3];
-    db;
-
-    constructor(db) {
-        this.db = db;
-    }
-
-    saveToDB() {
-        this.db.save(this.items);
-    }
-}
-
-const list1 = new ToDoList(new DB());
-list1.saveToDB();
-const list2 = new ToDoList(new MongoDB());
-list2.saveToDB();
+console.log('end');
