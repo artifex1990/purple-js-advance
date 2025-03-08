@@ -1,19 +1,28 @@
 'use strict';
 
-function setSelect(arr) {
-    const filters = document.querySelector('.filter');
-    filters.innerHTML = `<select>
-        ${arr.map(el => `<option value="${el.name}">${el.name}</option>`)}
-    </select>`;
-}
-
-function getCategories() {
-    fetch('https://dummyjson.com/products/categories')
-        .then(resp => resp.json())
-        .then(data => setSelect(data));  
-}
-
-getCategories();
-
-
-
+fetch('https://dummyjson.com/productss/')
+    .then(
+        response => {
+            if (!response.ok) {
+                throw new Error('HTTP error ' + response.status);
+            }
+            return response.json();
+        }
+    )
+    .then(({ products }) => {
+        console.log(products);
+        return fetch('https://dummyjson.com/products/'+products[5].id);
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('HTTP error ' + response.status);
+        }
+        response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        const el = document.querySelector('.filter');
+        el.innerHTML = error.message;
+    });
