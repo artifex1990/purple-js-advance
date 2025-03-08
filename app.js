@@ -1,21 +1,20 @@
 'use strict';
 
-fetch('https://dummyjson.com/products/')
-    .then(
-        response => {
-            console.log(response);
-            return response.json();
-        }
-    )
-    .then(({ products }) => {
-        console.log(products);
-        return fetch('https://dummyjson.com/products/'+products[5].id);
-    })
+function createSelect(array) {
+    const el = document.querySelector('.filter');
+    el.innerHTML = `<select>
+        ${array.map(arrEl => `<option value=${arrEl.name}>${arrEl.name}</option>`)}
+    </select>`;
+}
+
+function getCategories() {
+    fetch('https://dummyjson.com/products/categories')
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => console.log(error))
-    .finally(() => console.log('finally'));
+    .then(data => createSelect(data))
+    .catch(error => console.log(error));
+}
+
+getCategories();
+
 
 
