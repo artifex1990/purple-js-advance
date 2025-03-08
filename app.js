@@ -7,17 +7,24 @@ function myFetch(url) {
         request.send();
 
         request.addEventListener('load', function() {
-            try {
-                resolve(this.response);
-            } catch (e) {
-                reject(new Error(e.message));
+            if (this.status > 400) {
+                reject(new Error(this.status));
             }
+            resolve(this.responseText);
+        });
+
+        request.addEventListener('error', function() {
+            reject(new Error(this.status));
+        });
+        
+        request.addEventListener('timeout', function() {
+            reject(new Error('Timeout'));
         });
     });
 }
 
 
-myFetch('https://dummyjson.com/products/categories')
+myFetch('https://dummyjson.com/products/categorieds')
     .then(resp => JSON.parse(resp))
     .then(data => console.log(data))
     .catch(err => console.log(err.message));
