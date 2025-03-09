@@ -1,21 +1,26 @@
 'use strict';
 
-async function getIdea() {
+const wrapper = document.querySelector('.wrapper');
+
+async function getActivity() {
     const response = await fetch('https://bored.api.lewagon.com/api/activity');
     return response.json();
 }
 
-async function main() {
-    const ideas = await Promise.all([
-        getIdea(),
-        getIdea(),
-        getIdea()
-    ]);
-    document.querySelectorAll('.card').forEach((card, index) => {
-        card.innerText = ideas[index].activity;
-    });
+async function generate() {
+    try {
+        wrapper.innerHTML = '';
+        const data = await Promise.all([
+            getActivity(),
+            getActivity(),
+            getActivity()
+        ]);
+        for (const el of data) {
+            const element = document.createElement('div');
+            element.innerHTML = `${el.activity}`;
+            wrapper.appendChild(element);
+        }  
+    } catch(err) {
+        console.log(err);
+    }
 }
-
-document.querySelector('.btn').addEventListener('click', main);
-
-main();
