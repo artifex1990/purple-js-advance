@@ -1,31 +1,34 @@
 'use strict';
 
-async function getLocalGeo() {
+function getMyCoordinate() {
     return new Promise((resolve, reject) =>
         navigator.geolocation.getCurrentPosition(
-            (position) => resolve(position.coords),
-            (error) => reject(error)
+            ({ coords }) => {
+                resolve({
+                    latitude: coords.latitude,
+                    longitude: coords.longitude
+                });
+            },
+            error => reject(error)
         )
     )
 }
 
-async function getLocation() {
+async function getMyCity() {
     try {
-        const {latitude, longitude} = await getLocalGeo();
-        const location = await fetch(`https://api-bdc.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`);
+        const {latitude, longitude} = await getMyCoordinate();
+        const response = await fetch(`https://api-bdc.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`);
         
-        if (!location.ok) {
+        if (!response.ok) {
             throw new Error(location.status);
         }
 
-        const { city } = await location.json();
-        return city;
+        const data = await response.json();
+        console.log(data.city);
     } catch (error) {
         console.log(error);
     }
 }
 
-(async () => {
-    console.log(await getLocation());
-    console.log('end');
-})();
+getMyCity();
+
