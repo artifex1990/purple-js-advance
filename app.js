@@ -1,34 +1,19 @@
 'use strict';
 
-function getMyCoordinate() {
-    return new Promise((resolve, reject) =>
-        navigator.geolocation.getCurrentPosition(
-            ({ coords }) => {
-                resolve({
-                    latitude: coords.latitude,
-                    longitude: coords.longitude
-                });
-            },
-            error => reject(error)
-        )
-    )
-}
-
-async function getMyCity() {
-    try {
-        const {latitude, longitude} = await getMyCoordinate();
-        const response = await fetch(`https://api-bdc.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`);
-        
-        if (!response.ok) {
-            throw new Error(location.status);
-        }
-
-        const data = await response.json();
-        console.log(data.city);
-    } catch (error) {
-        console.log(error);
+class ProductRepository {
+    async getProducts() {
+        const response = await fetch('https://dummyjson.com/products');
+        console.log(await response.json());
     }
 }
 
-getMyCity();
 
+const repo = new ProductRepository();
+repo.getProducts();
+
+const asyncArrow = async () => {
+    const response = await fetch('https://dummyjson.com/products');
+    console.log(await response.json());
+}
+
+asyncArrow();
