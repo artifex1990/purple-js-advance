@@ -1,28 +1,31 @@
 'use strict';
 
-async function getProducts(){
-    try {
-        const productsResponse = await fetch('https://dummyjson.com/products');
-        if (!productsResponse.ok) {
-            throw new Error(productsResponse.status);
-        }
-        const { products } = await productsResponse.json();
-        console.log(products);
+async function getLocalGeo() {
+    return new Promise((resolve, reject) =>
+        navigator.geolocation.getCurrentPosition(
+            (position) => resolve(position.coords),
+            (error) => reject(error)
+        )
+    )
+}
 
-        const productResponse = await fetch('https://dummyjson.com/products/' + products[0].id);
-        const product = await productResponse.json();
-        console.log(product);
+async function getLocation() {
+    try {
+        const {latitude, longitude} = await getLocalGeo();
+        const location = await fetch(`https://api-bdc.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}`);
+        
+        if (!location.ok) {
+            throw new Error(location.status);
+        }
+
+        const { city } = await location.json();
+        return city;
     } catch (error) {
         console.log(error);
-    } finally {
-        console.log('finally');
     }
 }
-try {
-    const a = 5;
-    a = 10;
-} catch (error) {
-    console.log(error);
-}
-getProducts();
-console.log('end');
+
+(async () => {
+    console.log(await getLocation());
+    console.log('end');
+})();
