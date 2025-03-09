@@ -1,23 +1,21 @@
 'use strict';
 
-// async function getProduct(id) {
-//     const response = await fetch('https://dummyjson.com/products/' + id);
-//     return response.json();
-// }
+async function getIdea() {
+    const response = await fetch('https://bored.api.lewagon.com/api/activity');
+    return response.json();
+}
 
 async function main() {
-    const res = await fetch('https://dummyjson.com/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            username: 'emilys',
-            password: 'emilyspass'
-        })
+    const ideas = await Promise.all([
+        getIdea(),
+        getIdea(),
+        getIdea()
+    ]);
+    document.querySelectorAll('.card').forEach((card, index) => {
+        card.innerText = ideas[index].activity;
     });
-    const data = await res.json();
-    console.log(data);
 }
+
+document.querySelector('.btn').addEventListener('click', main);
 
 main();
