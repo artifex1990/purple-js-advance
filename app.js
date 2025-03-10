@@ -1,19 +1,50 @@
-'use strict';
+'use strict'
 
-function generate(event) {
-    console.log(event.target.getBoundingClientRect());
+let v = 123;
+let n = 123;
 
-    console.log('Page X offset ' + window.pageXOffset);
-    console.log('Page Y offset ' + window.pageYOffset);
-    console.log('Client width ' + document.documentElement.clientWidth);
-    console.log('Client height ' + document.documentElement.clientHeight);
+const button = document.querySelector('.button');
 
-    const el = document.querySelector('.down');
-    const rect = el.getBoundingClientRect();
+const eventHandler = function (event) {
+    console.log('event 1');
+};
+button.addEventListener('mouseover', eventHandler);
+button.addEventListener('click', (event) => {
+    console.log('event 2');
+    button.removeEventListener('click', eventHandler);
+});
 
-    window.scrollTo({
-        left: pageXOffset + rect.left,
-        top: pageYOffset + rect.top,
-        behavior: 'smooth'
-    });
+const ob = {
+    name: 'ob',
+    a: () => {
+        console.log(this);
+    },
+    b: function () {
+        console.log(this);
+    },
+    m() {
+        console.log(this);
+    }
 }
+const a = () => {
+    console.log(this);
+};
+
+const b = function () {
+    console.log(this);
+};
+
+a();
+b();
+
+ob.a();
+ob.b();
+ob.m();
+
+
+/* if (true) {
+    function c() {
+        console.log(this);
+    };
+}
+console.log(c); */
