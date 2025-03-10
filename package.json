@@ -4,7 +4,7 @@
   "description": "Book app",
   "main": "app.js",
   "scripts": {
-    "live-s": "live-server",
+    "build": "rollup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +19,14 @@
   "bugs": {
     "url": "https://github.com/artifex1990/purple-js-advance/issues"
   },
-  "homepage": "https://github.com/artifex1990/purple-js-advance#readme"
+  "homepage": "https://github.com/artifex1990/purple-js-advance#readme",
+  "dependencies": {
+    "axios": "^1.8.2"
+  },
+  "devDependencies": {
+    "rollup": "^4.35.0"
+  },
+  "peerDependencies": {},
+  "peerDependenciesMeta": {},
+  "optionalDependencies": {}
 }
