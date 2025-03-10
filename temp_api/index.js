@@ -9,3 +9,19 @@ console.log(Temporal.Now.zonedDateTimeISO('Europe/London').toString());
 const date = new Date();
 const instant = date.toTemporalInstant();
 console.log(instant.toString());
+
+const t1 = Temporal.Instant.from('2025-03-10T23:43:59.136+03:00');
+const t2 = Temporal.Instant.from('2025-03-10T23:43:59.136+03:00[Europe/Moscow]');
+const t3 = Temporal.Instant.fromEpochSeconds(10e8);
+
+const res = new Temporal.ZonedDateTime(
+    Temporal.Now.instant().epochNanoseconds, 
+    Temporal.TimeZone.from('Europe/London'),
+    Temporal.Calendar.from('iso8601')
+);
+
+console.log(res.toString());
+console.log(Temporal.PlainDateTime.from('2024-04-18').toString());
+console.log(Temporal.PlainDateTime.from('2024-04-18').dayOfWeek);
+console.log(Temporal.PlainDateTime.from('2024-04-18').day);
+console.log(Temporal.PlainDateTime.from('2024-04-18').dayOfYear);
