@@ -1,27 +1,15 @@
 'use strict'
 
-const wrapper = document.querySelector('.wrapper');
-console.log(wrapper);
+document.addEventListener('DOMContentLoaded', (e) => {
+    console.log('DOMContentLoaded');
+    console.log(e);
+});
+window.addEventListener('load', (e) => {
+    console.log('load');
+    console.log(e);
+});
 
-/* Вниз по дереву */
-const inner = wrapper.querySelector('.inner');
-const button = inner.querySelector('.button');
-console.log(inner);
-console.log(inner.childNodes);
-console.log(inner.children);
-
-console.log(inner.parentElement);
-console.log(inner.parentNode);
-
-/* Наверх по дереву */
-console.log(button.closest('.wrapper'));
-
-
-/* Сбоку */
-console.log(button.previousElementSibling);
-console.log(button.previousSibling);
-console.log(button.nextElementSibling);
-console.log(button.nextSibling);
-
-/* Из массива */
-console.log(button.parentElement.children[2]);
+// window.addEventListener('beforeunload', (e) => {
+//     e.preventDefault();
+//     e.returnValue = '';
+// });
