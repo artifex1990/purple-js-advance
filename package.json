@@ -1,6 +1,23 @@
 {
-  "dependencies": {
-    "g": "^2.0.1",
-    "rollup": "^4.35.0"
-  }
+  "name": "book-app",
+  "version": "1.0.0",
+  "description": "Book app",
+  "main": "app.js",
+  "scripts": {
+    "live-s": "live-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/artifex1990/purple-js-advance.git"
+  },
+  "keywords": [
+    "books"
+  ],
+  "author": "Pavel Demyanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/artifex1990/purple-js-advance/issues"
+  },
+  "homepage": "https://github.com/artifex1990/purple-js-advance#readme"
 }
