@@ -1,50 +1,33 @@
 'use strict'
 
-let v = 123;
-let n = 123;
 
 const button = document.querySelector('.button');
+const wrapper = document.querySelector('.wrapper');
+const inner = document.querySelector('.inner');
 
-const eventHandler = function (event) {
-    console.log('event 1');
-};
-button.addEventListener('mouseover', eventHandler);
-button.addEventListener('click', (event) => {
-    console.log('event 2');
-    button.removeEventListener('click', eventHandler);
-});
+button.addEventListener('click', function (event) {
+    console.log('button');
+    console.log(event.target);
+    console.log(event.currentTarget);
+    this.style.backgroundColor = 'purple';
+}); 
+inner.addEventListener('click', function (event) {
+    console.log('inner');
+    console.log(event.target);
+    console.log(event.currentTarget);
+    this.style.backgroundColor = 'green';
+    // event.stopPropagation();
+}); 
+wrapper.addEventListener('click', function (event) {
+    console.log('wrapper');
+    console.log(event.target);
+    console.log(event.currentTarget);
+    this.style.backgroundColor = 'blue';
+}, true); 
 
-const ob = {
-    name: 'ob',
-    a: () => {
-        console.log(this);
-    },
-    b: function () {
-        console.log(this);
-    },
-    m() {
-        console.log(this);
-    }
-}
-const a = () => {
-    console.log(this);
-};
-
-const b = function () {
-    console.log(this);
-};
-
-a();
-b();
-
-ob.a();
-ob.b();
-ob.m();
-
-
-/* if (true) {
-    function c() {
-        console.log(this);
-    };
-}
-console.log(c); */
+wrapper.addEventListener('click', function (event) {
+    console.log('wrapper');
+    console.log(event.target);
+    console.log(event.currentTarget);
+    this.style.backgroundColor = 'blue';
+}); 
