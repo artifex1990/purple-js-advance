@@ -28,3 +28,8 @@
   font-size: 18px;
   cursor: pointer;
 }
+
+.yellow {
+  background: yellow;
+  color: #333;
+}

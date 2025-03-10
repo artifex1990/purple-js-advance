@@ -1,15 +1,19 @@
 'use strict'
 
-document.addEventListener('DOMContentLoaded', (e) => {
-    console.log('DOMContentLoaded');
-    console.log(e);
-});
-window.addEventListener('load', (e) => {
-    console.log('load');
-    console.log(e);
-});
+const wrapper = document.querySelector('.wrapper');
+for (let i = 0; i < 100; i++) {
+    const el = document.createElement('div');
+    el.innerHTML = i;
+    wrapper.append(el);
+}
 
-// window.addEventListener('beforeunload', (e) => {
-//     e.preventDefault();
-//     e.returnValue = '';
-// });
+function search(e) {
+    const inputValue = e.target.value;
+    for (const el of [...wrapper.children]) {
+        if (el.innerHTML.includes(inputValue)) {
+            el.classList.add('yellow');
+            continue;
+        }
+        el.classList.remove('yellow');
+    }
+}
