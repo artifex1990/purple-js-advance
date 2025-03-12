@@ -8,6 +8,16 @@ export class Card extends DivComponent {
         this.cardState = cardState;
     }
 
+    #addToFavorites(key) {
+        this.appState.favorites.push(this.cardState);
+    }
+
+    #deleteFromFavorites() {
+        this.appState.favorites =this.appState.favorites.filter(
+            item => item.key !== this.cardState.key
+        );
+    }
+
     render() {
         this.el.classList.add('card');
         const existInFavorites = this.appState.favorites.find(item => item.key === this.cardState.key);
@@ -28,13 +38,19 @@ export class Card extends DivComponent {
                 <div class="card__footer">
                     <button class="button__add ${existInFavorites ? 'button_active' : ''}">
                         ${existInFavorites 
-                            ? '<img src="./static/favorites-white.svg" alt="Добавить в избранное" />'
-                            : '<img src="./static/favorites.svg" alt="Удалить из избранного" />'
+                            ? '<img src="./static/favorites.svg" alt="Удалить из избранного" />'
+                            : '<img src="./static/favorites-white.svg" alt="Добавить в избранное" />'
                         }
                     </button>
                 </div>
             </div>
         `;
+
+        if (existInFavorites) {
+            this.el.querySelector('button').addEventListener('click', this.#deleteFromFavorites.bind(this)); 
+        } else {
+            this.el.querySelector('button').addEventListener('click', this.#addToFavorites.bind(this)); 
+        }
         
         return this.el;
     }
