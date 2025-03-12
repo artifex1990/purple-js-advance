@@ -5,9 +5,8 @@
   font-size: 16px;
   padding: 30px;
 }
-.cardlist__wrapper {
-  color: var(--black);
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 32px;
+.card_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
 }
